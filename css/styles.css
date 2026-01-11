@@ -257,6 +257,12 @@ main {
     transform: translateY(-2px);
 }
 
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Divider */
 .divider {
     height: 1px;

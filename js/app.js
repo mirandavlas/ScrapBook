@@ -62,6 +62,9 @@ function setupEventListeners() {
     colorPicker.addEventListener('input', handleColorChange);
     colorPicker.addEventListener('change', handleColorChange);
 
+    // Add text button (NEW)
+    document.getElementById('addTextBtn').addEventListener('click', handleAddText);
+
     // Add doodle button
     document.getElementById('addDoodleBtn').addEventListener('click', handleAddDoodle);
 
@@ -73,11 +76,37 @@ function setupEventListeners() {
     // Photo file input
     document.getElementById('photoInput').addEventListener('change', handlePhotoUpload);
 
+    // Delete selected button (NEW)
+    document.getElementById('deleteSelectedBtn').addEventListener('click', handleDeleteSelected);
+
     // Clear button
     document.getElementById('clearBtn').addEventListener('click', handleClearAll);
 
     // Export button
     document.getElementById('exportBtn').addEventListener('click', handleExport);
+
+    // Canvas selection events (NEW)
+    setupCanvasSelectionEvents();
+}
+
+/**
+ * Setup canvas selection events to enable/disable delete button
+ */
+function setupCanvasSelectionEvents() {
+    const canvas = canvasManager.getCanvas();
+    const deleteBtn = document.getElementById('deleteSelectedBtn');
+
+    canvas.on('selection:created', () => {
+        deleteBtn.disabled = false;
+    });
+
+    canvas.on('selection:updated', () => {
+        deleteBtn.disabled = false;
+    });
+
+    canvas.on('selection:cleared', () => {
+        deleteBtn.disabled = true;
+    });
 }
 
 /**
@@ -207,6 +236,24 @@ function updateCanvasText(text) {
 }
 
 /**
+ * Handle add text button (NEW)
+ */
+function handleAddText() {
+    const theme = THEMES[currentTheme];
+    const fontFamily = document.getElementById('fontSelect').value || theme.fonts[0];
+    const fill = document.getElementById('colorPicker').value || theme.defaultTextColor;
+
+    const newText = canvasManager.addTextBlock('Novo Texto', {
+        fontFamily,
+        fill,
+        fontSize: 60
+    });
+
+    // Show success message
+    showTemporaryMessage('✅ Texto adicionado! Clique duas vezes para editar.');
+}
+
+/**
  * Handle add doodle button
  */
 function handleAddDoodle() {
@@ -261,6 +308,17 @@ function handlePhotoUpload(e) {
 
     // Reset file input
     e.target.value = '';
+}
+
+/**
+ * Handle delete selected button (NEW)
+ */
+function handleDeleteSelected() {
+    const success = canvasManager.deleteSelected();
+
+    if (success) {
+        showTemporaryMessage('🗑️ Elemento deletado com sucesso!');
+    }
 }
 
 /**

@@ -10,12 +10,44 @@ class CanvasManager {
             backgroundColor: null
         });
 
-        this.textObject = null;
+        this.textObject = null; // Keep for backward compatibility with main textarea
+        this.textObjects = []; // Array for multiple text blocks
         this.currentTheme = 'scrapbook';
         this.doodleObjects = [];
         this.photoObjects = [];
         this.width = width;
         this.height = height;
+
+        // Enable object selection and editing
+        this.setupCanvasEvents();
+    }
+
+    /**
+     * Setup canvas events for interactive editing
+     */
+    setupCanvasEvents() {
+        let clickTimeout = null;
+        let lastClickTime = 0;
+        let lastClickTarget = null;
+
+        // Enable double-click to edit text (using mouse:down event)
+        this.canvas.on('mouse:down', (e) => {
+            const currentTime = new Date().getTime();
+            const timeDiff = currentTime - lastClickTime;
+
+            // Check if it's a double click (within 300ms) on the same target
+            if (timeDiff < 300 && e.target === lastClickTarget && e.target) {
+                // Check if target is text (fabric.Text or fabric.IText)
+                if (e.target.type === 'text' || e.target.type === 'i-text') {
+                    // It's a double click on text
+                    e.target.enterEditing();
+                    e.target.selectAll();
+                }
+            }
+
+            lastClickTime = currentTime;
+            lastClickTarget = e.target;
+        });
     }
 
     /**
@@ -126,6 +158,46 @@ class CanvasManager {
         }
 
         this.canvas.renderAll();
+    }
+
+    /**
+     * Add a new text block to the canvas (for multiple texts)
+     */
+    addTextBlock(text = 'Novo Texto', options = {}) {
+        const theme = THEMES[this.currentTheme];
+        const {
+            fontFamily = theme.fonts[0],
+            fontSize = 60,
+            fill = theme.defaultTextColor,
+            textAlign = 'center'
+        } = options;
+
+        const shadowConfig = theme.textShadow;
+
+        // Create new IText object (editable text)
+        const newText = new fabric.IText(text, {
+            fontFamily,
+            fontSize,
+            fill,
+            textAlign,
+            left: this.canvas.width / 2 + (Math.random() * 100 - 50),
+            top: this.canvas.height / 2 + (Math.random() * 100 - 50),
+            originX: 'center',
+            originY: 'center',
+            shadow: new fabric.Shadow({
+                color: shadowConfig.color,
+                blur: shadowConfig.blur,
+                offsetX: shadowConfig.offsetX,
+                offsetY: shadowConfig.offsetY
+            })
+        });
+
+        this.canvas.add(newText);
+        this.textObjects.push(newText);
+        this.canvas.setActiveObject(newText);
+        this.canvas.renderAll();
+
+        return newText;
     }
 
     /**
@@ -297,6 +369,52 @@ class CanvasManager {
     }
 
     /**
+     * Delete the currently selected object
+     */
+    deleteSelected() {
+        const activeObject = this.canvas.getActiveObject();
+
+        if (activeObject) {
+            // Remove from tracking arrays
+            if (activeObject.type === 'text' || activeObject.type === 'i-text') {
+                const index = this.textObjects.indexOf(activeObject);
+                if (index > -1) {
+                    this.textObjects.splice(index, 1);
+                }
+                if (activeObject === this.textObject) {
+                    this.textObject = null;
+                }
+            } else if (this.doodleObjects.includes(activeObject)) {
+                const index = this.doodleObjects.indexOf(activeObject);
+                if (index > -1) {
+                    this.doodleObjects.splice(index, 1);
+                }
+            } else if (this.photoObjects.includes(activeObject)) {
+                const index = this.photoObjects.indexOf(activeObject);
+                if (index > -1) {
+                    this.photoObjects.splice(index, 1);
+                }
+            }
+
+            // Remove from canvas
+            this.canvas.remove(activeObject);
+            this.canvas.discardActiveObject();
+            this.canvas.renderAll();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get the currently selected object
+     */
+    getSelectedObject() {
+        return this.canvas.getActiveObject();
+    }
+
+    /**
      * Clear all objects from canvas (except background)
      */
     clear() {
@@ -307,6 +425,7 @@ class CanvasManager {
         });
 
         this.textObject = null;
+        this.textObjects = [];
         this.doodleObjects = [];
         this.photoObjects = [];
         this.canvas.renderAll();

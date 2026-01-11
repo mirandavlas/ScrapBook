@@ -75,11 +75,20 @@
                 </div>
 
                 <div class="button-group">
+                    <button id="addTextBtn" class="btn btn-secondary">
+                        <span>📝</span> Adicionar Texto
+                    </button>
                     <button id="addDoodleBtn" class="btn btn-secondary">
                         <span>✨</span> Adicionar Doodle
                     </button>
+                </div>
+
+                <div class="button-group">
                     <button id="addPhotoBtn" class="btn btn-secondary">
                         <span>📷</span> Adicionar Foto
+                    </button>
+                    <button id="deleteSelectedBtn" class="btn btn-danger" disabled>
+                        <span>❌</span> Deletar Selecionado
                     </button>
                     <input type="file" id="photoInput" accept="image/*" style="display: none;">
                 </div>
@@ -98,9 +107,11 @@
                 <div class="tips">
                     <h3>💡 Dicas:</h3>
                     <ul>
-                        <li>Textos curtos (&lt;30 chars) ficam maiores</li>
-                        <li>Arraste, rotacione e redimensione doodles</li>
-                        <li>Fotos são redimensionadas automaticamente</li>
+                        <li>Clique em "Adicionar Texto" para criar múltiplos blocos de texto</li>
+                        <li>Textos curtos (&lt;30 chars) ficam maiores automaticamente</li>
+                        <li>Clique duas vezes no texto para editar diretamente no canvas</li>
+                        <li>Arraste, rotacione e redimensione todos os elementos</li>
+                        <li>Selecione um elemento e clique em "Deletar" para remover</li>
                         <li>Imagem exportada tem 2x a resolução para qualidade</li>
                     </ul>
                 </div>
