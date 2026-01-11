@@ -87,6 +87,9 @@ function setupEventListeners() {
 
     // Canvas selection events (NEW)
     setupCanvasSelectionEvents();
+
+    // Keyboard shortcuts
+    setupKeyboardShortcuts();
 }
 
 /**
@@ -106,6 +109,24 @@ function setupCanvasSelectionEvents() {
 
     canvas.on('selection:cleared', () => {
         deleteBtn.disabled = true;
+    });
+}
+
+/**
+ * Setup keyboard shortcuts
+ */
+function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        // Delete or Backspace key
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+            const activeObject = canvasManager.getSelectedObject();
+
+            // Only delete if there's a selected object and we're not editing text
+            if (activeObject && !activeObject.isEditing) {
+                e.preventDefault(); // Prevent browser back navigation on Backspace
+                handleDeleteSelected();
+            }
+        }
     });
 }
 

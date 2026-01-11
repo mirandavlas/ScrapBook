@@ -1,157 +1,155 @@
-# 🎨 Twitter Image Generator
+# Twitter Image Generator
 
-Aplicação web para criar imagens estilizadas otimizadas para Twitter/X com três temas visuais diferentes: Scrapbook, Quadro Negro e Quadro Branco.
+Aplicação web para criar imagens estilizadas otimizadas para Twitter/X (1200x675px).
 
-## ✨ Funcionalidades
+![Twitter Image Generator](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-- **3 Temas Visuais**: Scrapbook, Quadro Negro (Chalkboard) e Quadro Branco (Whiteboard)
-- **Editor de Texto**: Adicione seu texto com fontes handwritten personalizadas
-- **Doodles Decorativos**: Adicione elementos gráficos temáticos
-- **Upload de Fotos**: Adicione imagens com efeito de fita adesiva
-- **Export de Alta Qualidade**: PNG 2400x1350px (2x resolução)
-- **Totalmente Cliente**: Sem necessidade de backend ou servidor
-- **Responsivo**: Funciona em desktop, tablet e mobile
+## 🎨 Recursos
+
+- **3 Temas Visuais**: Scrapbook, Quadro Negro e Quadro Branco
+- **Múltiplos Textos**: Adicione e edite vários blocos de texto
+- **30 Doodles**: 10 doodles únicos desenhados à mão por tema
+- **Upload de Fotos**: Adicione fotos com efeitos de fita adesiva
+- **Edição Interativa**: Arraste, rotacione e redimensione todos elementos
+- **Export em Alta Qualidade**: PNG 2400x1350px (2x resolução)
+- **Totalmente Responsivo**: Funciona em desktop e mobile
 
 ## 🚀 Como Usar
 
-1. **Abra o arquivo `index.html`** em um navegador moderno (Chrome, Firefox, Edge ou Safari)
+### Opção 1: Abrir Localmente
+1. Clone ou baixe este repositório
+2. Abra o arquivo `index.html` no seu navegador
+3. Pronto! Não precisa de servidor
 
-2. **Escolha um tema**: Clique em um dos botões de tema no topo (Scrapbook, Quadro Negro ou Quadro Branco)
+### Opção 2: Hospedar Online
+Deploy gratuito em:
+- [GitHub Pages](https://pages.github.com/)
+- [Netlify](https://www.netlify.com/)
+- [Vercel](https://vercel.com/)
 
-3. **Digite seu texto**: Use a área de texto para escrever sua mensagem (até 200 caracteres)
+Basta fazer upload dos arquivos e estará no ar!
 
-4. **Personalize**:
-   - Escolha uma fonte no dropdown
-   - Selecione uma cor no color picker
-   - Adicione doodles decorativos clicando em "Adicionar Doodle"
-   - Adicione fotos clicando em "Adicionar Foto"
+## 📖 Guia Rápido
 
-5. **Manipule elementos**:
-   - Arraste doodles e fotos para reposicionar
-   - Rotacione usando as alças de rotação
-   - Redimensione arrastando os cantos
+### Adicionar Texto
+1. Clique em **"Adicionar Texto"** para criar novos blocos
+2. **Duplo-clique** no texto para editar diretamente
+3. Escolha fonte e cor nos controles
 
-6. **Exporte**: Clique em "Download PNG" para baixar sua imagem em alta qualidade (2400x1350px)
+### Adicionar Doodles
+- Clique em **"Adicionar Doodle"** para adicionar decorações aleatórias
+- Cada tema tem 10 doodles únicos
 
-## 📁 Estrutura do Projeto
+### Adicionar Fotos
+1. Clique em **"Adicionar Foto"**
+2. Selecione uma imagem (max 10MB)
+3. A foto será redimensionada automaticamente
+
+### Editar Elementos
+- **Mover**: Arraste com o mouse
+- **Rotacionar**: Use os controles de rotação
+- **Redimensionar**: Arraste os cantos
+- **Deletar**: Selecione e pressione `Delete` ou `Backspace`
+
+### Exportar
+- Clique em **"Download PNG"** para baixar em 2400x1350px
+- Imagem otimizada para qualidade no Twitter/X
+
+## ⌨️ Atalhos de Teclado
+
+| Tecla | Ação |
+|-------|------|
+| `Delete` | Deletar elemento selecionado |
+| `Backspace` | Deletar elemento selecionado |
+| `Duplo-clique` | Editar texto |
+
+## 🛠️ Tecnologias
+
+- **Fabric.js 5.3.0** - Manipulação de canvas
+- **Google Fonts** - Tipografia handwritten
+- **SVG inline** - Doodles e decorações
+- **Vanilla JavaScript** - Sem frameworks pesados
+
+## 📁 Estrutura de Arquivos
 
 ```
 ScrapBook/
-├── index.html              # Página principal
+├── index.html              # Estrutura HTML principal
 ├── css/
-│   └── styles.css         # Estilos responsivos
+│   └── styles.css         # Estilos e layout responsivo
 ├── js/
-│   ├── app.js             # Lógica principal
-│   ├── canvas-manager.js  # Gerenciamento do canvas
-│   ├── style-themes.js    # Configurações de temas e SVGs
-│   └── export-manager.js  # Exportação de imagens
-└── README.md              # Este arquivo
+│   ├── app.js            # Lógica principal da aplicação
+│   ├── canvas-manager.js # Gerenciamento do canvas Fabric.js
+│   ├── style-themes.js   # Temas e assets SVG
+│   └── export-manager.js # Exportação de PNG
+└── README.md             # Este arquivo
 ```
 
-## 🎨 Temas Disponíveis
+## 🎯 Dimensões das Imagens
 
-### 📔 Scrapbook
-- Fundo bege/amarelo claro com textura
+- **Canvas**: 1200 x 675px (16:9)
+- **Export**: 2400 x 1350px (2x para qualidade)
+- **Otimizado para**: Twitter/X, Instagram, Facebook
+
+## 🌟 Recursos Avançados
+
+### Temas Disponíveis
+
+**📔 Scrapbook**
+- Fundo bege/amarelo claro
+- Doodles coloridos estilo hand-drawn
+- Fitas adesivas vintage
 - Fontes: Caveat, Pacifico, Dancing Script
-- Doodles coloridos: corações, estrelas, flores, setas, redemoinhos
-- Fitas adesivas vintage e washi tape
 
-### 🖊️ Quadro Negro (Chalkboard)
-- Fundo escuro verde/preto
+**🖊️ Quadro Negro**
+- Fundo escuro tipo lousa
+- Doodles brancos estilo giz
+- Efeito de glow no texto
 - Fontes: Permanent Marker, Indie Flower, Patrick Hand
-- Texto branco com efeito glow
-- Doodles estilo giz: corações, estrelas, checks, sublinhados
 
-### ✏️ Quadro Branco (Whiteboard)
+**✏️ Quadro Branco**
 - Fundo branco/cinza claro
+- Doodles coloridos estilo marcador
+- Fitas brancas/coloridas
 - Fontes: Architects Daughter, Kalam, Shadows Into Light
-- Texto preto/colorido estilo marcador
-- Doodles bold: círculos, setas, estrelas, checks
 
 ## 💡 Dicas de Uso
 
-- **Textos curtos** (<30 caracteres) ficam em fonte maior (80px)
-- **Textos médios** (30-60 caracteres) ficam em 60px
-- **Textos longos** (>60 caracteres) ficam em fonte menor (40-45px)
-- Doodles são posicionados aleatoriamente evitando sobreposição com o texto
-- Fotos são automaticamente redimensionadas para max 400px (mantém proporção)
-- A imagem exportada tem o dobro da resolução (2400x1350px) para melhor qualidade
+- Textos curtos (<30 caracteres) ficam maiores automaticamente
+- Use múltiplos blocos de texto para layouts criativos
+- Combine doodles e fotos para designs únicos
+- Exporte sempre em 2x resolução para melhor qualidade
 
-## 🛠️ Tecnologias Utilizadas
+## 🐛 Solução de Problemas
 
-- **HTML5 + CSS3**: Estrutura e estilização
-- **JavaScript (ES6+)**: Lógica da aplicação
-- **Fabric.js 5.3.0**: Manipulação de canvas e objetos
-- **Google Fonts**: 9 fontes handwritten
-- **SVG**: Doodles e fitas (inline base64)
+**Fonte não carrega?**
+- Verifique sua conexão com a internet (Google Fonts via CDN)
+- Aguarde o carregamento completo da página
 
-## 📱 Compatibilidade
+**Imagem não exporta?**
+- Certifique-se que há elementos no canvas
+- Tente um navegador diferente (Chrome/Firefox recomendados)
 
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Edge 90+
-- ✅ Safari 14+
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 📝 Limitações Conhecidas
-
-- Upload de fotos limitado a 10MB
-- Máximo de 200 caracteres para o texto
-- Requer conexão com internet para carregar Google Fonts e Fabric.js (via CDN)
-
-## 🔧 Customização
-
-### Adicionar Novos Temas
-
-Edite `js/style-themes.js` e adicione um novo objeto ao `THEMES`:
-
-```javascript
-newtheme: {
-    name: 'Novo Tema',
-    background: 'linear-gradient(...)',
-    fonts: ['Font1', 'Font2', 'Font3'],
-    textColors: ['#color1', '#color2'],
-    defaultTextColor: '#color1',
-    doodleKeys: ['doodle1', 'doodle2'],
-    tapeKeys: ['tape1'],
-    useTape: true,
-    textShadow: { /* ... */ }
-}
-```
-
-### Adicionar Novos Doodles
-
-Crie novos SVGs no objeto `SVG_ASSETS` em `js/style-themes.js`:
-
-```javascript
-SVG_ASSETS.scrapbook.newdoodle = 'data:image/svg+xml;base64,' + btoa(`
-    <svg><!-- seu SVG aqui --></svg>
-`);
-```
-
-## 🤝 Contribuindo
-
-Este é um projeto de código aberto. Sinta-se livre para:
-- Reportar bugs
-- Sugerir melhorias
-- Adicionar novos temas
-- Criar novos doodles
+**Layout quebrado em mobile?**
+- A aplicação é responsiva, mas funciona melhor em desktop para criação
 
 ## 📄 Licença
 
-Projeto criado para uso livre. Use, modifique e distribua como desejar.
+MIT License - Sinta-se livre para usar e modificar!
 
-## 🎯 Uso Recomendado
+## 🤝 Contribuições
 
-Ideal para:
-- Posts no Twitter/X
-- Stories do Instagram
-- Posts no Facebook
-- LinkedIn
-- Qualquer rede social que aceite imagens 16:9
+Contribuições são bem-vindas! Sinta-se à vontade para:
+- Reportar bugs
+- Sugerir novos recursos
+- Adicionar novos temas
+- Criar novos doodles
 
-**Dimensão otimizada**: 1200x675px (visualização) → 2400x1350px (export)
+## 📧 Contato
+
+Criado com 💜 para criadores de conteúdo
 
 ---
 
-Feito com 💜 para criadores de conteúdo
+**Compatível com**: Twitter/X, Instagram, Facebook e outras redes sociais
