@@ -54,7 +54,9 @@
 
         <main>
             <div class="canvas-container">
-                <canvas id="mainCanvas"></canvas>
+                <div class="canvas-wrapper" id="canvasWrapper">
+                    <canvas id="mainCanvas"></canvas>
+                </div>
                 <div class="canvas-info">
                     <span>1200 x 675px (Twitter Optimized)</span>
                 </div>
@@ -66,10 +68,10 @@
                     <textarea
                         id="textInput"
                         placeholder="Digite sua mensagem aqui..."
-                        rows="4"
+                        rows="2"
                         maxlength="200"
                     ></textarea>
-                    <small class="char-count"><span id="charCount">0</span>/200 caracteres</small>
+                    <small class="char-count"><span id="charCount">0</span>/200</small>
                 </div>
 
                 <div class="control-row">

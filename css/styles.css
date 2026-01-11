@@ -26,42 +26,42 @@ body {
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 30px;
+    padding: 20px 30px;
     text-align: center;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
     font-weight: 700;
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     opacity: 0.9;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .theme-selector {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .theme-btn {
-    padding: 12px 25px;
+    padding: 8px 20px;
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid white;
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .theme-btn:hover {
@@ -76,11 +76,13 @@ header h1 {
 
 /* Main Layout */
 main {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+    padding: 20px;
     max-width: 100%;
+    height: calc(100vh - 220px);
+    overflow: hidden;
 }
 
 /* Canvas Container */
@@ -91,21 +93,23 @@ main {
     justify-content: center;
     background: #f5f5f5;
     border-radius: 10px;
-    padding: 20px;
-    width: 100%;
-    overflow: hidden;
+    padding: 15px;
+    overflow: auto;
+    height: 100%;
+}
+
+.canvas-wrapper {
+    transform-origin: center center;
 }
 
 #mainCanvas {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    max-width: 100%;
-    height: auto;
 }
 
 .canvas-info {
-    margin-top: 15px;
-    font-size: 0.9rem;
+    margin-top: 10px;
+    font-size: 0.85rem;
     color: #666;
     font-weight: 500;
 }
@@ -114,22 +118,43 @@ main {
 .controls-panel {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    gap: 12px;
     width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    height: 100%;
+}
+
+/* Custom Scrollbar */
+.controls-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.controls-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.controls-panel::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.controls-panel::-webkit-scrollbar-thumb:hover {
+    background: #5568d3;
 }
 
 .control-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
 }
 
 .control-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 10px;
 }
 
 .control-group.half {
@@ -139,18 +164,19 @@ main {
 .control-group label {
     font-weight: 600;
     color: #333;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 .control-group textarea {
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     resize: vertical;
     font-family: inherit;
     transition: border-color 0.3s ease;
+    min-height: 60px;
 }
 
 .control-group textarea:focus {
@@ -159,16 +185,16 @@ main {
 }
 
 .char-count {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #666;
     text-align: right;
 }
 
 .control-group select {
-    padding: 10px 12px;
+    padding: 8px 10px;
     border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
     background: white;
     transition: border-color 0.3s ease;
@@ -186,17 +212,17 @@ main {
 }
 
 .control-group input[type="color"] {
-    width: 60px;
-    height: 40px;
+    width: 50px;
+    height: 35px;
     border: 2px solid #ddd;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     padding: 2px;
 }
 
 #colorValue {
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #666;
 }
 
@@ -204,27 +230,28 @@ main {
 .button-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
 }
 
 .button-group-vertical {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .btn {
-    padding: 15px 20px;
+    padding: 10px 14px;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -267,21 +294,21 @@ main {
 .divider {
     height: 1px;
     background: linear-gradient(to right, transparent, #ddd, transparent);
-    margin: 10px 0;
+    margin: 8px 0;
 }
 
 /* Tips Section */
 .tips {
     background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    border-left: 4px solid #667eea;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
 }
 
 .tips h3 {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .tips ul {
@@ -290,11 +317,12 @@ main {
 }
 
 .tips li {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     color: #666;
-    padding: 5px 0;
-    padding-left: 20px;
+    padding: 3px 0;
+    padding-left: 16px;
     position: relative;
+    line-height: 1.4;
 }
 
 .tips li:before {
@@ -308,10 +336,10 @@ main {
 /* Footer */
 footer {
     background: #f8f9fa;
-    padding: 20px;
+    padding: 12px 20px;
     text-align: center;
     color: #666;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-top: 1px solid #e0e0e0;
 }
 

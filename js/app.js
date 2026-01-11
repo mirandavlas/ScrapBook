@@ -35,7 +35,38 @@ function initializeApp() {
     // Populate font selector with initial theme fonts
     populateFontSelector();
 
+    // Setup canvas zoom to fit container
+    setupCanvasZoom();
+    window.addEventListener('resize', setupCanvasZoom);
+
     console.log('Twitter Image Generator initialized successfully!');
+}
+
+/**
+ * Setup canvas zoom to fit in container while maintaining aspect ratio
+ */
+function setupCanvasZoom() {
+    const container = document.querySelector('.canvas-container');
+    const wrapper = document.getElementById('canvasWrapper');
+    const canvas = document.getElementById('mainCanvas');
+
+    if (!container || !wrapper || !canvas) return;
+
+    // Get container dimensions
+    const containerWidth = container.clientWidth - 30; // minus padding
+    const containerHeight = container.clientHeight - 60; // minus padding and info
+
+    // Canvas original dimensions
+    const canvasWidth = 1200;
+    const canvasHeight = 675;
+
+    // Calculate scale to fit
+    const scaleX = containerWidth / canvasWidth;
+    const scaleY = containerHeight / canvasHeight;
+    const scale = Math.min(scaleX, scaleY, 1); // Never scale up, only down
+
+    // Apply transform
+    wrapper.style.transform = `scale(${scale})`;
 }
 
 /**
