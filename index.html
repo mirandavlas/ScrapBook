@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Image Generator - Scrapbook, Chalkboard & Whiteboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Pacifico&family=Dancing+Script:wght@400;700&family=Permanent+Marker&family=Indie+Flower&family=Patrick+Hand&family=Architects+Daughter&family=Kalam:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+    <!-- Fabric.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Twitter Image Generator</h1>
+            <p class="subtitle">Crie imagens estilizadas para suas postagens no Twitter/X</p>
+            <div class="theme-selector">
+                <button class="theme-btn active" data-theme="scrapbook">
+                    <span>📔</span>
+                    <span>Scrapbook</span>
+                </button>
+                <button class="theme-btn" data-theme="chalkboard">
+                    <span>🖊️</span>
+                    <span>Quadro Negro</span>
+                </button>
+                <button class="theme-btn" data-theme="whiteboard">
+                    <span>✏️</span>
+                    <span>Quadro Branco</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="canvas-container">
+                <canvas id="mainCanvas"></canvas>
+                <div class="canvas-info">
+                    <span>1200 x 675px (Twitter Optimized)</span>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label for="textInput">Seu Texto:</label>
+                    <textarea
+                        id="textInput"
+                        placeholder="Digite sua mensagem aqui..."
+                        rows="4"
+                        maxlength="200"
+                    ></textarea>
+                    <small class="char-count"><span id="charCount">0</span>/200 caracteres</small>
+                </div>
+
+                <div class="control-row">
+                    <div class="control-group half">
+                        <label for="fontSelect">Fonte:</label>
+                        <select id="fontSelect">
+                            <option value="Caveat">Caveat</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group half">
+                        <label for="colorPicker">Cor do Texto:</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="colorPicker" value="#4A3F35">
+                            <span id="colorValue">#4A3F35</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="addDoodleBtn" class="btn btn-secondary">
+                        <span>✨</span> Adicionar Doodle
+                    </button>
+                    <button id="addPhotoBtn" class="btn btn-secondary">
+                        <span>📷</span> Adicionar Foto
+                    </button>
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="button-group-vertical">
+                    <button id="exportBtn" class="btn btn-primary">
+                        <span>⬇️</span> Download PNG (2400x1350)
+                    </button>
+                    <button id="clearBtn" class="btn btn-danger">
+                        <span>🗑️</span> Limpar Tudo
+                    </button>
+                </div>
+
+                <div class="tips">
+                    <h3>💡 Dicas:</h3>
+                    <ul>
+                        <li>Textos curtos (&lt;30 chars) ficam maiores</li>
+                        <li>Arraste, rotacione e redimensione doodles</li>
+                        <li>Fotos são redimensionadas automaticamente</li>
+                        <li>Imagem exportada tem 2x a resolução para qualidade</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Feito com 💜 para criadores de conteúdo | Compatível com Twitter/X, Instagram e Facebook</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/style-themes.js"></script>
+    <script src="js/canvas-manager.js"></script>
+    <script src="js/export-manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
